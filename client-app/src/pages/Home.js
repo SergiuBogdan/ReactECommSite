@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 const Home = () => {
   // luam produsele din ProductContext.js
   const { products } = useContext(ProductContext);
-  // Facem o filtrare sa luam doar hainele de barbati si femei
+
   const filteredProducts = products.filter((item) => {
     return item.category;
   });
