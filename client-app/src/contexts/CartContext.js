@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
-
+// Universal Cookies import
+import Cookies from "universal-cookie";
 // Creem context
 export const CartContext = createContext();
 
@@ -10,12 +11,26 @@ const CartProvider = ({ children }) => {
   const [itemAmount, setItemAmount] = useState(0);
   // Pretul total
   const [total, setTotal] = useState(0);
+  // Cookies
+  const cookies = new Cookies();
+
+  // Adaugam produsele din cart in cookies
+  useEffect(() => {
+    const cartData = cookies.get("cartCookie");
+    if (cartData) {
+      setCart(cartData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const total = cart.reduce((accumulator, currentItem) => {
       return accumulator + currentItem.price * currentItem.amount;
     }, 0);
+
     setTotal(total);
+    cookies.set("cartCookie", cart, { path: "/" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   // update item amount

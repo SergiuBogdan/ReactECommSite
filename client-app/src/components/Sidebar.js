@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import CartItem from "../components/CartItem";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { CartContext } from "../contexts/CartContext";
+import Checkout from "./Checkout";
 
 const Sidebar = () => {
   const { isOpen, handleClose } = useContext(SidebarContext);
   const { cart, clearCart, total, itemAmount } = useContext(CartContext);
+  const [toggle, setToggle] = useState(false);
+
+  const toggleHandler = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <div
       className={`${
@@ -48,15 +55,17 @@ const Sidebar = () => {
         <Link
           to="/"
           className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium"
+          onClick={handleClose}
         >
-          View cart
+          Close Cart
         </Link>
-        <Link
-          to="/"
+        <button
+          onClick={toggleHandler}
           className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium"
         >
           Checkout
-        </Link>
+        </button>
+        <div>{toggle && <Checkout />}</div>
       </div>
     </div>
   );
