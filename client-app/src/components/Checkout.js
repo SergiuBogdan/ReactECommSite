@@ -1,5 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
-import { SidebarContext } from "../contexts/SidebarContext";
+import React, { useRef, useState } from "react";
 import OrderCompleted from "./OrderCompleted";
 
 const isEmpty = (value) => value.trim() === "";
@@ -11,15 +10,10 @@ const Checkout = () => {
     city: true,
   });
 
-  const { handleClose } = useContext(SidebarContext);
-
   const [orderCompleted, setOrderCompleted] = useState(false);
   const [formVisible, setFormVisible] = useState(true);
 
   const orderHandler = () => {
-    // Your order sending logic here...
-
-    // Assuming the order is successfully sent, set orderCompleted to true
     setOrderCompleted(true);
     setFormVisible(false);
   };
@@ -52,7 +46,7 @@ const Checkout = () => {
       return;
     }
 
-    // If the form is valid, proceed with orderHandler
+    // Daca formul e valid, atunci orderHandler va functiona.
     orderHandler();
   };
 
