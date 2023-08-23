@@ -11,11 +11,11 @@ const Hero = () => {
           </div>
 
           <h1 className="text-[70px] leading-[1.1] font-light mb-4 text-white float-left">
-            YOU AND YOUR BEER
+            TAKE YOUR BEER
             <br />
           </h1>
           <h2 className="text-[40px] leading-[1.1] font-light mb-4 text-white">
-            FOR DESERVE IT
+            YOU DESERVE IT
             <br />
           </h2>
         </div>
